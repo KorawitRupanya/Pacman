@@ -44,10 +44,9 @@ class Pacman:
         return not self.maze.has_wall_at(new_r, new_c)
  
     def check_dots(self):
-        if(self.has_dot==True)
-            return True
-        else:
-            return False
+        if self.maze.has_dot_at(self.get_row(),self.get_col()) :
+            self.maze.remove_dot_at(self.get_row(),self.get_col())
+            self.world.increase_score()
  
     def update(self, delta):
         if self.is_at_center():
@@ -78,10 +77,14 @@ class World:
                              self.maze,
                              self.block_size)
         
+        self.score = 0
 
     def on_key_press(self, key, key_modifiers):
         if key in KEY_MAP:
             self.pacman.next_direction = KEY_MAP[key]
+
+    def increase_score(self):
+        self.score += 1
 
     def update(self, delta):
         self.pacman.update(delta)

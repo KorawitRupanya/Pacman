@@ -51,7 +51,7 @@ class MazeWindow(arcade.Window):
     def __init__(self, width, height):
         super().__init__(width, height)
  
-        arcade.set_background_color(arcade.color.WHITE)
+        arcade.set_background_color(arcade.color.BLACK)
  
         self.world = World(SCREEN_WIDTH, SCREEN_HEIGHT, BLOCK_SIZE)
         self.pacman_sprite = ModelSprite('images/pacman.png',
@@ -69,6 +69,10 @@ class MazeWindow(arcade.Window):
  
         self.maze_drawer.draw()                
         self.pacman_sprite.draw()
+
+        arcade.draw_text(str(self.world.score),
+                         self.width - 60, self.height - 30,
+                         arcade.color.WHITE, 20)
     
     def on_key_press(self, key, key_modifiers):
          self.world.on_key_press(key, key_modifiers)
